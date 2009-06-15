@@ -1,4 +1,4 @@
-package liquibase.statement.ext.setidentity;
+package liquibase.sqlgenerator.ext.setidentity;
 
 import liquibase.database.Database;
 import liquibase.database.core.MSSQLDatabase;
@@ -11,8 +11,9 @@ import liquibase.statement.InsertStatement;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
-public class LoadDataGenerator implements SqlGenerator<InsertStatement> {
+public class InsertGenerator implements SqlGenerator<InsertStatement> {
     public int getPriority() {
         return 15;
     }
@@ -26,7 +27,7 @@ public class LoadDataGenerator implements SqlGenerator<InsertStatement> {
     }
 
     public Sql[] generateSql(InsertStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
-        List<Sql> sql = Arrays.asList(sqlGeneratorChain.generateSql(statement, database));
+        List<Sql> sql = new ArrayList(Arrays.asList(sqlGeneratorChain.generateSql(statement, database)));
 
         sql.add(0, new UnparsedSql("SET IDENTITY_INSERT "+ database.escapeTableName(statement.getSchemaName(), statement.getTableName()) +" ON"));
 
