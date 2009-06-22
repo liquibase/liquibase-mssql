@@ -269,6 +269,10 @@
     <option name="myVersion" value="124" />
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
+  <component name="ToggleTest">
+    <toggle from="*" to="*UnitTest" />
+    <toggle from="*" to="*AtomicTest" />
+  </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
   </component>
