@@ -1,4 +1,4 @@
-package liquibase.sqlgenerator.ext.setidentity;
+package liquibase.ext.mssql.sqlgenerator;
 
 import liquibase.database.Database;
 import liquibase.database.core.MSSQLDatabase;
