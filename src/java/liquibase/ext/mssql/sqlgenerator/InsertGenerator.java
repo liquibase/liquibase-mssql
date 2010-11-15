@@ -11,10 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import liquibase.sqlgenerator.core.InsertOrUpdateGenerator;
+import liquibase.sqlgenerator.core.InsertOrUpdateGeneratorMSSQL;
 import liquibase.statement.core.InsertOrUpdateStatement;
 import liquibase.statement.core.InsertStatement;
 
-public class InsertGenerator extends InsertOrUpdateGenerator {
+public class InsertGenerator extends liquibase.sqlgenerator.core.InsertGenerator {
 
     @Override
     public int getPriority() {
@@ -30,7 +31,7 @@ public class InsertGenerator extends InsertOrUpdateGenerator {
     }
 
     @Override
-    public Sql[] generateSql(InsertOrUpdateStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
+    public Sql[] generateSql(InsertStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
         List<Sql> sql = new ArrayList(Arrays.asList(sqlGeneratorChain.generateSql(statement, database)));
 
         sql.add(0, new UnparsedSql("SET IDENTITY_INSERT "+ database.escapeTableName(statement.getSchemaName(), statement.getTableName()) +" ON"));
@@ -38,17 +39,5 @@ public class InsertGenerator extends InsertOrUpdateGenerator {
         sql.add(new UnparsedSql("SET IDENTITY_INSERT "+ database.escapeTableName(statement.getSchemaName(), statement.getTableName()) +" OFF"));
 
         return sql.toArray(new Sql[sql.size()]);
-    }
-
-
-
-    @Override
-    protected String getRecordCheck(InsertOrUpdateStatement ious, Database dtbs, String string) {
-        return "";
-    }
-
-    @Override
-    protected String getElse(Database dtbs) {
-        return "";
     }
 }

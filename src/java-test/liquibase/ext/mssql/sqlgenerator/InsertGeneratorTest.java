@@ -1,9 +1,9 @@
 package liquibase.ext.mssql.sqlgenerator;
 
+import liquibase.statement.core.InsertStatement;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
-import liquibase.statement.InsertStatement;
 import liquibase.database.core.MSSQLDatabase;
 import liquibase.sql.Sql;
 

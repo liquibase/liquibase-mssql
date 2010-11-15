@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.liquibase:liquibase-core:2.0-rc7">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/liquibase/liquibase-core/2.0-rc7/liquibase-core-2.0-rc7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/liquibase/liquibase-core/2.0-rc7/liquibase-core-2.0-rc7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/liquibase/liquibase-core/2.0-rc7/liquibase-core-2.0-rc7-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../liquibase/liquibase-core/src/main/java" />
+    </SOURCES>
+  </library>
+</component>
