@@ -20,6 +20,32 @@
     </dependencies>
     <description>Liquibase extensions for MS SQL Server.</description>
     <url>http://liquibase.jira.com/wiki/display/CONTRIB/MSSQL+Extensions</url>
+
+    <issueManagement>
+        <url>http://liquibase.jira.com/browse/CONTRIB</url>
+    </issueManagement>
+
+    <scm>
+        <url>https://liquibase.jira.com/svn/CONTRIB/trunk/liquibase-mssql/trunk</url>
+        <developerConnection>scm:svn:https://liquibase.jira.com/svn/CONTRIB/trunk/liquibase-mssql/trunk
+        </developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>nvoxland</id>
+            <name>Nathan Voxland</name>
+            <email>nathan@voxland.net</email>
+            <url>http://nathan.voxland.net</url>
+            <organizationUrl>http://nathan.voxland.net/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>-6</timezone>
+        </developer>
+    </developers>
+
     <build>
         <sourceDirectory>src/java</sourceDirectory>
         <testSourceDirectory>src/java-test</testSourceDirectory>
@@ -35,7 +61,62 @@
                         <debug>true</debug>
                     </configuration>
                 </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.0</version>
+                    <configuration>
+                        <mavenExecutorId>forked-path</mavenExecutorId>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>sonatype-nexus-staging</id>
+            <name>Sonatype Production Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sontatype Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
