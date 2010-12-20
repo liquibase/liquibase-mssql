@@ -10,7 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Maven: org.liquibase:liquibase-core:2.0-rc7" level="project" />
+    <orderEntry type="library" name="Maven: org.liquibase:liquibase-core:2.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.1" level="project" />
   </component>
 </module>
