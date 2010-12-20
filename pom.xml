@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>liquibase-mssql</groupId>
+    <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-mssql</artifactId>
     <name>Liquibase MS SQL Server Extensions</name>
     <version>1.2.0</version>
@@ -24,6 +24,13 @@
         <url>http://liquibase.jira.com/browse/CONTRIB</url>
     </issueManagement>
 
+    <licenses>
+       <license>
+           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+           <name>Apache License, Version 2.0</name>
+       </license>
+   </licenses>
+    
     <scm>
         <url>https://liquibase.jira.com/svn/CONTRIB/trunk/mssql-extensions/tags/liquibase-mssql-1.2.0</url>
         <developerConnection>scm:svn:https://liquibase.jira.com/svn/CONTRIB/trunk/mssql-extensions/tags/liquibase-mssql-1.2.0
