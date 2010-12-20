@@ -24,6 +24,13 @@
         <url>http://liquibase.jira.com/browse/CONTRIB</url>
     </issueManagement>
 
+    <licenses>
+       <license>
+           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+           <name>Apache License, Version 2.0</name>
+       </license>
+   </licenses>
+    
     <scm>
         <url>https://liquibase.jira.com/svn/CONTRIB/trunk/mssql-extensions/trunk</url>
         <developerConnection>scm:svn:https://liquibase.jira.com/svn/CONTRIB/trunk/mssql-extensions/trunk
