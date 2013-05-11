@@ -17,7 +17,7 @@ public class InsertGenerator extends liquibase.sqlgenerator.core.InsertGenerator
             "           where TABLE_SCHEMA = '${schemaName}'\n" +
             "             and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') = 1\n" +
             "             and TABLE_NAME='${tableName}'\n" +
-            "             and TABLE_SCHEMA='${schemaName})'\n" +
+            "             and TABLE_SCHEMA='${schemaName}')\n" +
             "\t${then}\n";
 
     @Override
