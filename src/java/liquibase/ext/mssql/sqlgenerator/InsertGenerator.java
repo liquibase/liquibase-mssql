@@ -15,7 +15,7 @@ public class InsertGenerator extends liquibase.sqlgenerator.core.InsertGenerator
             "IF EXISTS(select TABLE_NAME\n" +
             "            from INFORMATION_SCHEMA.COLUMNS\n" +
             "           where TABLE_SCHEMA = '${schemaName}'\n" +
-            "             and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') = 1\n" +
+            "             and COLUMNPROPERTY(object_id('${schemaName}.${tableName}'), COLUMN_NAME, 'IsIdentity') = 1\n" +
             "             and TABLE_NAME='${tableName}'\n" +
             "             and TABLE_SCHEMA='${schemaName}')\n" +
             "\t${then}\n";
@@ -35,7 +35,7 @@ public class InsertGenerator extends liquibase.sqlgenerator.core.InsertGenerator
 
     @Override
     public Sql[] generateSql(InsertStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
-        String tableName = database.escapeTableName(statement.getSchemaName(), statement.getTableName());
+        String tableName = database.escapeTableName(statement.getCatalogName(), statement.getSchemaName(), statement.getTableName());
         String enableIdentityInsert = "SET IDENTITY_INSERT " + tableName + " ON";
         String disableIdentityInsert = "SET IDENTITY_INSERT " + tableName + " OFF";
         String safelyEnableIdentityInsert = ifTableHasIdentityColumn(enableIdentityInsert, statement);

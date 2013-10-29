@@ -12,7 +12,7 @@ import static org.junit.Assert.assertFalse;
 public class InsertGeneratorTest {
     @Test
     public void integrates() {
-        InsertStatement statement = new InsertStatement(null, "TABLE_NAME");
+        InsertStatement statement = new InsertStatement(null, null, "TABLE_NAME");
         statement.addColumnValue("id", 1);
         statement.addColumnValue("name", "asdf");
 
