@@ -14,10 +14,9 @@ public class InsertGenerator extends liquibase.sqlgenerator.core.InsertGenerator
     public static final String IF_TABLE_HAS_IDENTITY_STATEMENT =
             "IF EXISTS(select TABLE_NAME\n" +
             "            from INFORMATION_SCHEMA.COLUMNS\n" +
-            "           where TABLE_SCHEMA = '${schemaName}'\n" +
-            "             and COLUMNPROPERTY(object_id('${schemaName}.${tableName}'), COLUMN_NAME, 'IsIdentity') = 1\n" +
-            "             and TABLE_NAME='${tableName}'\n" +
-            "             and TABLE_SCHEMA='${schemaName}')\n" +
+            "           where TABLE_NAME = '${tableName}'\n" +
+            "             and TABLE_SCHEMA = '${schemaName}'\n" +
+            "             and COLUMNPROPERTY(object_id(TABLE_SCHEMA + '.' + TABLE_NAME), COLUMN_NAME, 'IsIdentity') = 1)\n" +
             "\t${then}\n";
 
     @Override
@@ -38,18 +37,20 @@ public class InsertGenerator extends liquibase.sqlgenerator.core.InsertGenerator
         String tableName = database.escapeTableName(statement.getCatalogName(), statement.getSchemaName(), statement.getTableName());
         String enableIdentityInsert = "SET IDENTITY_INSERT " + tableName + " ON";
         String disableIdentityInsert = "SET IDENTITY_INSERT " + tableName + " OFF";
-        String safelyEnableIdentityInsert = ifTableHasIdentityColumn(enableIdentityInsert, statement);
-        String safelyDisableIdentityInsert = ifTableHasIdentityColumn(disableIdentityInsert, statement);
+        String safelyEnableIdentityInsert = ifTableHasIdentityColumn(enableIdentityInsert, statement, database);
+        String safelyDisableIdentityInsert = ifTableHasIdentityColumn(disableIdentityInsert, statement, database);
 
-        List<Sql> sql = new ArrayList(Arrays.asList(sqlGeneratorChain.generateSql(statement, database)));
+        List<Sql> sql = new ArrayList<Sql>(Arrays.asList(sqlGeneratorChain.generateSql(statement, database)));
         sql.add(0, new UnparsedSql(safelyEnableIdentityInsert));
         sql.add(new UnparsedSql(safelyDisableIdentityInsert));
         return sql.toArray(new Sql[sql.size()]);
     }
 
-    private String ifTableHasIdentityColumn(String then, InsertStatement statement) {
+    private String ifTableHasIdentityColumn(String then, InsertStatement statement, Database database) {
         String tableName = statement.getTableName();
         String schemaName = statement.getSchemaName();
+        if (schemaName == null)
+            schemaName = database.getDefaultSchemaName();
         if (schemaName == null)
             schemaName = "dbo";
 
