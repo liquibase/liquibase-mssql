@@ -8,7 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/liquibase/liquibase-core/2.0-rc7/liquibase-core-2.0-rc7-sources.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../liquibase/liquibase-core/src/main/java" />
+      <root url="file://C:/liquibase/liquibase-core/src/main/java" />
     </SOURCES>
   </library>
 </component>

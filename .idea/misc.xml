@@ -3,15 +3,15 @@
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
   </component>
-  <component name="DependencyValidationManager">
-    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
-  </component>
   <component name="EclipseCompilerSettings">
     <option name="DEBUGGING_INFO" value="true" />
     <option name="GENERATE_NO_WARNINGS" value="true" />
     <option name="DEPRECATION" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
+  </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
   </component>
   <component name="IdProvider" IDEtalkID="8EAB18AB020E53DBA4AF1BABCBF021AB" />
   <component name="JavadocGenerationManager">
@@ -61,4 +61,3 @@
     <find-history />
   </component>
 </project>
-

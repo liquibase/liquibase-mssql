@@ -4,44 +4,37 @@
     <artifactId>liquibase-mssql</artifactId>
     <name>Liquibase MS SQL Server Extensions</name>
     <version>1.2.1-SNAPSHOT</version>
-    <dependencies>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+
     <description>Liquibase extensions for MS SQL Server.</description>
     <url>http://liquibase.jira.com/wiki/display/CONTRIB/MSSQL+Extensions</url>
 
-    <issueManagement>
-        <url>http://liquibase.jira.com/browse/CONTRIB</url>
-    </issueManagement>
+   	<organization>
+		<name>Liquibase.org</name>
+		<url>http://www.liquibase.org</url>
+	</organization>
 
-    <licenses>
-       <license>
-           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-           <name>Apache License, Version 2.0</name>
-       </license>
-   </licenses>
+	<licenses>
+		<license>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<name>Apache License, Version 2.0</name>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<url>https://github.com/liquibase/liquibase-mssql/issues</url>
+	</issueManagement>
     
-    <scm>
-        <url>https://liquibase.jira.com/svn/CONTRIB/trunk/mssql-extensions/trunk</url>
-        <developerConnection>scm:svn:https://liquibase.jira.com/svn/CONTRIB/trunk/mssql-extensions/trunk
-        </developerConnection>
-    </scm>
+<scm>
+        <connection>scm:git:git@github.com:liquibase/liquibase-mssql.git</connection>
+        <url>scm:git:https://github.com/liquibase/liquibase-mssql.git</url>
+        <developerConnection>scm:git:git@github.com:liquibase/liquibase-mssql.git</developerConnection>
+	</scm>
 
     <developers>
         <developer>
             <id>nvoxland</id>
             <name>Nathan Voxland</name>
-            <email>nathan@voxland.net</email>
+			<email>nathan.voxland@liquibase.org</email>
             <url>http://nathan.voxland.net</url>
             <organizationUrl>http://nathan.voxland.net/</organizationUrl>
             <roles>
@@ -52,77 +45,153 @@
         </developer>
     </developers>
 
-    <build>
-        <sourceDirectory>src/java</sourceDirectory>
-        <testSourceDirectory>src/java-test</testSourceDirectory>
+  <dependencies>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+			<scope>test</scope>
+            <version>4.11</version>
+        </dependency>
+    </dependencies>
 
-        <pluginManagement>
-            <plugins>
+ <build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<optimize>true</optimize>
+						<debug>true</debug>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<redirectTestOutputToFile>true</redirectTestOutputToFile>
+						<reportFormat>plain</reportFormat>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>enforce-java</id>
+							<phase>compile</phase>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<configuration>
+								<rules>
+									<requireJavaVersion>
+										<version>1.6</version>
+									</requireJavaVersion>
+								</rules>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.4</version>
+				</plugin>
+
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+                    <version>2.2.2</version>
+					<configuration>
+						<mavenExecutorId>forked-path</mavenExecutorId>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.6.5</version>
+					<extensions>true</extensions>
+					<executions>
+						<execution>
+							<id>default-deploy</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<serverId>sonatype-nexus-staging</serverId>
+						<nexusUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2/</nexusUrl>
+					</configuration>
+				</plugin>
+
                 <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
                     <configuration>
-                        <source>1.5</source>
-                        <target>1.5</target>
-                        <optimize>true</optimize>
-                        <debug>true</debug>
+                        <skip>false</skip>
                     </configuration>
                 </plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.0</version>
-                    <configuration>
-                        <mavenExecutorId>forked-path</mavenExecutorId>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <distributionManagement>
+  <distributionManagement>
         <repository>
-            <uniqueVersion>false</uniqueVersion>
             <id>sonatype-nexus-staging</id>
             <name>Sonatype Production Repository</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 
         </repository>
         <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
             <id>sonatype-nexus-snapshots</id>
             <name>Sontatype Snapshot Repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
-    <profiles>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
