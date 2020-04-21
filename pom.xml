@@ -9,14 +9,14 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>3.0.6</version>
+            <version>3.4.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>4.11</version>
             <scope>test</scope>
-        </dependency>
+    	</dependency>
     </dependencies>
     <description>Liquibase extensions for MS SQL Server.</description>
     <url>http://liquibase.jira.com/wiki/display/CONTRIB/MSSQL+Extensions</url>
@@ -58,19 +58,6 @@
         </developer>
     </developers>
 
-  <dependencies>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-			<scope>test</scope>
-            <version>4.11</version>
-        </dependency>
-    </dependencies>
 
  <build>
 		<pluginManagement>
