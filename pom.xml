@@ -1,24 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.liquibase.ext</groupId>
-    <artifactId>liquibase-mssql</artifactId>
-    <name>Liquibase MS SQL Server Extensions</name>
-    <version>3.9.0-SNAPSHOT</version>
-    <dependencies>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>3.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
-            <scope>test</scope>
-    	</dependency>
-    </dependencies>
-    <description>Liquibase extensions for MS SQL Server.</description>
-    <url>http://liquibase.jira.com/wiki/display/CONTRIB/MSSQL+Extensions</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.liquibase.ext</groupId>
+	<artifactId>liquibase-mssql</artifactId>
+	<version>3.9.0-SNAPSHOT</version>
+
+	<name>Liquibase MS SQL Server Extensions</name>
+	<description>Liquibase extensions for MS SQL Server.</description>
+	<url>https://github.com/liquibase/liquibase-mssql</url>
 
    	<organization>
 		<name>Liquibase.org</name>
@@ -39,8 +29,8 @@
 	<scm>
 		<connection>scm:git:http://github.com/liquibase/liquibase-mssql.git</connection>
 		<url>https://github.com/liquibase/liquibase-mssql</url>
-	  <tag>liquibase-mssql-3.9.0</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 
     <developers>
         <developer>
@@ -57,6 +47,20 @@
         </developer>
     </developers>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <version>4.13</version>
+
+    	</dependency>
+    </dependencies>
 
  <build>
 		<pluginManagement>
@@ -97,7 +101,7 @@
 							<configuration>
 								<rules>
 									<requireJavaVersion>
-										<version>1.6</version>
+										<version>1.8</version>
 									</requireJavaVersion>
 								</rules>
 							</configuration>
@@ -116,7 +120,17 @@
 					<artifactId>maven-release-plugin</artifactId>
                     <version>2.5.3</version>
 					<configuration>
+                        <stagingRepository>/tmp/maven-snapshot</stagingRepository>
 						<mavenExecutorId>forked-path</mavenExecutorId>
+                        <pushChanges>false</pushChanges>
+					</configuration>
+				</plugin>
+
+
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+						<skip>false</skip>
 					</configuration>
 				</plugin>
 
@@ -161,13 +175,7 @@
     					</executions>
 				</plugin>				
 
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                    <configuration>
-                        <skip>false</skip>
-                    </configuration>
-                </plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -175,19 +183,20 @@
   <distributionManagement>
         <repository>
             <id>sonatype-nexus-staging</id>
-            <name>Sonatype Production Repository</name>
+            <name>Nexus Release Repository</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 
         </repository>
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
-            <name>Sontatype Snapshot Repository</name>
+            <name>Sonatype Nexus Snapshots</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
 	<profiles>
 		<profile>
+            <!-- Required for deployment to Sonatype -->
 			<id>release-sign-artifacts</id>
 			<activation>
 				<property>
