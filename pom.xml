@@ -36,12 +36,12 @@
 	<issueManagement>
 		<url>https://github.com/liquibase/liquibase-mssql/issues</url>
 	</issueManagement>
-    
-<scm>
-        <connection>scm:git:git@github.com:liquibase/liquibase-mssql.git</connection>
-        <url>scm:git:https://github.com/liquibase/liquibase-mssql.git</url>
-        <developerConnection>scm:git:git@github.com:liquibase/liquibase-mssql.git</developerConnection>
-	</scm>
+
+	<scm>
+		<connection>scm:git:http://github.com/liquibase/liquibase-postgresql.git</connection>
+		<url>https://github.com/liquibase/liquibase-mssql</url>
+	  <tag>HEAD</tag>
+  </scm>
 
     <developers>
         <developer>
