@@ -38,9 +38,9 @@
 	</issueManagement>
     
 <scm>
-        <connection>scm:git:git@github.com:liquibase/liquibase-mssql.git</connection>
+        <connection>scm:git:https://github.com:liquibase/liquibase-mssql.git</connection>
         <url>scm:git:https://github.com/liquibase/liquibase-mssql.git</url>
-        <developerConnection>scm:git:git@github.com:liquibase/liquibase-mssql.git</developerConnection>
+        <developerConnection>scm:git:https://github.com:liquibase/liquibase-mssql.git</developerConnection>
 	</scm>
 
     <developers>
