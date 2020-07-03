@@ -40,7 +40,7 @@
 <scm>
         <connection>scm:git:http://github.com/liquibase/liquibase-mssql.git</connection>
         <url>https://github.com/liquibase/liquibase-mssql.git</url>
-        <developerConnection>scm:git:http://github.com/liquibase/liquibase-mssql.git</developerConnection>
+        <!--<developerConnection>scm:git:http://github.com/liquibase/liquibase-mssql.git</developerConnection>-->
 	  <tag>HEAD</tag>
   </scm>
 
