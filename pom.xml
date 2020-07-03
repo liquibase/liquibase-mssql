@@ -158,7 +158,6 @@
             <id>sonatype-nexus-staging</id>
             <name>Sonatype Production Repository</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-
         </repository>
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
