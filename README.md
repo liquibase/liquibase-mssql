@@ -1,4 +1,4 @@
-liquibase-mssql
+liquibase-mssql [![Build and Test Extension](https://github.com/liquibase/liquibase-mssql/actions/workflows/build.yml/badge.svg)](https://github.com/liquibase/liquibase-mssql/actions/workflows/build.yml)
 ===============
 
 MS SQL Server specific extension
