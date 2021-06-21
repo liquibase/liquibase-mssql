@@ -41,43 +41,11 @@ Example Changelog
             <column name="Name" value="Nota Person"/>
         </insert>
     </changeSet>
-    <!--<changeSet author="molivasdat" id="loadData-tbl_rank">
+    <changeSet author="molivasdat" id="loadData-tbl_rank">
 		<loadData tableName="rank" file="mydata_table.csv" relativeToChangelogFile="true" separator=";" quotchar="&quot;">
 			<column header="ID" name="ID" type="NUMERIC"/>
 			<column header="Name" name="Name" type="STRING"/>
 		</loadData>
-	</changeSet>-->
+	</changeSet>
 </databaseChangeLog>
-```
-
-loaddata is commented out since it currently does not work with this extension
-
-As an alternative to use loaddata until this works \
-You might use this as an example
-```
-<changeSet author="molivasdat" id="loadData-tbl_rank">
-    <sql>SET IDENTITY_INSERT rank ON</sql>
-		<loadData tableName="rank" file="mydata_table.csv" relativeToChangelogFile="true" separator=";" quotchar="&quot;">
-			<column header="ID" name="ID" type="NUMERIC"/>
-			<column header="Name" name="Name" type="STRING"/>
-		</loadData>
-    <sql>SET IDENTITY_INSERT rank OFF</sql>
-</changeSet>
-```
-
-Or 
-as 3 separate changeSets and remove 2 of them later
-```
-<changeSet author="molivasdat" id="removelater-1">
-    <sql>SET IDENTITY_INSERT rank ON</sql>
-</changeSet>
-<changeSet author="molivasdat" id="loadData-tbl_rank">
-		<loadData tableName="rank" file="mydata_table.csv" relativeToChangelogFile="true" separator=";" quotchar="&quot;">
-			<column header="ID" name="ID" type="NUMERIC"/>
-			<column header="Name" name="Name" type="STRING"/>
-		</loadData>
-</changeSet>
-<changeSet author="molivasdat" id="removelater-2">
-    <sql>SET IDENTITY_INSERT rank OFF</sql>
-</changeSet>
 ```
