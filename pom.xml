@@ -16,7 +16,7 @@
     <url>https://github.com/liquibase/liquibase-mssql</url>
     
     <properties>
-        <liquibase.version>4.28.0</liquibase.version>
+        <liquibase.version>4.29.0</liquibase.version>
     </properties>
 
     <scm>
