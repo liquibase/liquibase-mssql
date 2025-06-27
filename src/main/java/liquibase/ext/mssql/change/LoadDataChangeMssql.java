@@ -4,6 +4,7 @@ import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.change.core.LoadDataChange;
 import liquibase.database.Database;
+import liquibase.database.core.MSSQLDatabase;
 import liquibase.ext.mssql.MssqlUtil;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
@@ -44,5 +45,10 @@ public class LoadDataChangeMssql extends LoadDataChange {
         returnList.add(new RawSqlStatement(MssqlUtil.generateIdentityInsertSql("OFF", catalogName, schemaName, tableName, database)));
 
         return returnList.toArray(new SqlStatement[0]);
+    }
+
+    @Override
+    public boolean supports(final Database database) {
+        return database instanceof MSSQLDatabase;
     }
 }
