@@ -10,7 +10,7 @@
 
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-mssql</artifactId>
-    <version>4.33.0</version>
+    <version>4.34.0-SNAPSHOT</version>
     <name>Liquibase MS SQL Server Extensions</name>
     <description>Liquibase extensions for MS SQL Server.</description>
     <url>https://github.com/liquibase/liquibase-mssql</url>
@@ -23,7 +23,7 @@
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
 		<url>https://github.com/liquibase/liquibase-mssql.git</url>
-		<tag>temp</tag>
+		<tag>HEAD</tag>
 	</scm>
 
     <dependencies>
